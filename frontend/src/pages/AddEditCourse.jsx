@@ -80,7 +80,7 @@ export default function AddEditCourse() {
             display: "flex", alignItems: "center", gap: "0.5rem",
             color: "#94a3b8", background: "none", border: "none",
             cursor: "pointer", fontSize: "0.875rem", marginBottom: "1.5rem",
-            padding: 0, transition: "color 0.15s",
+            padding: 0,
           }}
           onMouseEnter={(e) => (e.currentTarget.style.color = "#6366f1")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}

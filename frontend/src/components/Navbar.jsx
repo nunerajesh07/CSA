@@ -35,7 +35,6 @@ const Navbar =() =>{
         position: "sticky",
         top: 0,
         zIndex: 100,
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
       }}
     >
       <div
@@ -68,7 +67,6 @@ const Navbar =() =>{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
             }}
           >
             <FiBookOpen size={18} color="white" />
@@ -279,7 +277,6 @@ function NavLink({ to, children }) {
         padding: "0.375rem 0.75rem",
         borderRadius: "8px",
         background: isActive ? "rgba(37,99,235,0.1)" : "transparent",
-        transition: "all 0.15s ease",
       }}
     >
       {children}

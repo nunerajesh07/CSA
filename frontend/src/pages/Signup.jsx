@@ -61,7 +61,7 @@ export default function Signup() {
       }}
     >
       <div
-        className="glass-card animate-fade-in-up"
+        className="glass-card"
         style={{ width: "100%", maxWidth: "440px", padding: "2.5rem" }}
       >
         {}

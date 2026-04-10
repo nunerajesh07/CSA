@@ -51,7 +51,7 @@ export default function AdminLogin() {
         background: "rgba(124,58,237,0.04)",
       }}
     >
-      <div className="glass-card animate-fade-in-up" style={{ width: "100%", maxWidth: "420px", padding: "2.5rem" }}>
+      <div className="glass-card" style={{ width: "100%", maxWidth: "420px", padding: "2.5rem" }}>
         {}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <div
@@ -135,10 +135,9 @@ export default function AdminLogin() {
             style={{
               width: "100%", marginTop: "0.5rem", padding: "0.875rem",
               background: "#7c3aed",
-              color: "white", border: "none", borderRadius: "10px",
+              color: "white", border: "none", borderRadius: "5px",
               fontWeight: 600, fontSize: "0.95rem", cursor: "pointer",
-              boxShadow: "0 4px 15px rgba(124,58,237,0.4)",
-              opacity: loading ? 0.7 : 1, transition: "all 0.2s ease",
+              opacity: loading ? 0.7 : 1,
             }}
           >
             {loading ? (

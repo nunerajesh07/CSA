@@ -124,22 +124,11 @@ export default function PurchasedCourses() {
             {courses.map((course, index) => (
               <div
                 key={course._id}
-                className="animate-card-in"
                 style={{
-                  animationDelay: `${index * 0.08}s`,
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(37,99,235,0.2)",
-                  borderRadius: "16px",
+                  borderRadius: "8px",
                   overflow: "hidden",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "0 12px 40px rgba(37,99,235,0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
                 {/* Image Section */}

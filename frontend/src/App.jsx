@@ -32,10 +32,9 @@ export default function App() {
               background: "#ffffff",
               color: "#212529",
               border: "1px solid #dee2e6",
-              borderRadius: "10px",
+              borderRadius: "5px",
               fontSize: "0.875rem",
-              fontFamily: "'Inter', sans-serif",
-              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+              fontFamily: "Arial, sans-serif",
             },
             success: {
               iconTheme: { primary: "#10b981", secondary: "white" },

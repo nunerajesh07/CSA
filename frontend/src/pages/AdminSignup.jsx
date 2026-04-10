@@ -53,7 +53,7 @@ export default function AdminSignup() {
         background: "rgba(124,58,237,0.04)",
       }}
     >
-      <div className="glass-card animate-fade-in-up" style={{ width: "100%", maxWidth: "440px", padding: "2.5rem" }}>
+      <div className="glass-card" style={{ width: "100%", maxWidth: "440px", padding: "2.5rem" }}>
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <div
             style={{

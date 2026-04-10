@@ -1,7 +1,7 @@
 {
   "name": "edumaster-backend",
   "version": "1.0.0",
-  "description": "EduMaster - Online Course Platform API",
+  "description": "CSA - Online Course Platform API",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

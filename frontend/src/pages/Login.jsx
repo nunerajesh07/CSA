@@ -52,7 +52,7 @@ export default function Login() {
       }}
     >
       <div
-        className="glass-card animate-fade-in-up"
+        className="glass-card"
         style={{ width: "100%", maxWidth: "420px", padding: "2.5rem" }}
       >
         {}

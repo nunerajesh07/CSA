@@ -24,7 +24,7 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
     setLoading(true);
     try {
       await purchaseCourse(course._id);
-      toast.success("Course purchased successfully! 🎉");
+      toast.success("Course purchased successfully! ");
       if (onPurchaseSuccess) onPurchaseSuccess(course._id); 
     } catch (err) {
       const message = err.response?.data?.message || "Purchase failed. Try again.";
@@ -36,16 +36,13 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
 
   return (
     <div
-      className="animate-card-in"
       style={{
         background: "var(--color-surface)",
         border: "1px solid var(--color-border)",
-        borderRadius: "16px",
+        borderRadius: "8px",
         overflow: "hidden",
-        transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
         display: "flex",
         flexDirection: "column",
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
       }}
     >
       {/* Course Image */}
@@ -57,13 +54,12 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            transition: "transform 0.3s ease",
           }}
           onError={(e) => {
             e.target.src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800";
           }}
         />
-        {/* Subtle overlay gradient */}
+        
         <div
           style={{
             position: "absolute",
@@ -84,13 +80,12 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
               background: "#10b981",
               color: "white",
               padding: "0.25rem 0.75rem",
-              borderRadius: "20px",
+              borderRadius: "4px",
               fontSize: "0.75rem",
               fontWeight: 600,
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
-              boxShadow: "0 2px 8px rgba(16,185,129,0.4)",
             }}
           >
             Purchased
