@@ -3,7 +3,6 @@
 
 
 import React, { useState } from "react";
-import { FiDollarSign, FiCheckCircle, FiShoppingCart, FiLoader } from "react-icons/fi";
 import { purchaseCourse } from "../services/api";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
@@ -49,7 +48,7 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
         boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
       }}
     >
-      {}
+      {/* Course Image */}
       <div style={{ position: "relative", overflow: "hidden", height: "180px" }}>
         <img
           src={course.imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"}
@@ -64,7 +63,7 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
             e.target.src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800";
           }}
         />
-        {}
+        {/* Subtle overlay gradient */}
         <div
           style={{
             position: "absolute",
@@ -75,7 +74,7 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
             background: "rgba(255,255,255,0.85)",
           }}
         />
-        {}
+        {/* Status Badge */}
         {isPurchased && (
           <div
             style={{
@@ -94,13 +93,12 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
               boxShadow: "0 2px 8px rgba(16,185,129,0.4)",
             }}
           >
-            <FiCheckCircle size={12} />
             Purchased
           </div>
         )}
       </div>
 
-      {}
+      {/* Course Info */}
       <div
         style={{
           padding: "1.25rem",
@@ -142,7 +140,7 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
           {course.description}
         </p>
 
-        {}
+        {/* Action Row */}
         <div
           style={{
             display: "flex",
@@ -154,7 +152,6 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-            <FiDollarSign size={16} color="#10b981" />
             <span
               style={{
                 fontSize: "1.25rem",
@@ -183,7 +180,6 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
                 cursor: "not-allowed",
               }}
             >
-              <FiCheckCircle size={14} />
               Enrolled
             </button>
           ) : (
@@ -216,7 +212,6 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
                 </>
               ) : (
                 <>
-                  <FiShoppingCart size={14} />
                   Buy Now
                 </>
               )}

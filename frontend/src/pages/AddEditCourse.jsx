@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { createCourse, updateCourse } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { FiBookOpen, FiDollarSign, FiImage, FiFileText, FiArrowLeft, FiSave } from "react-icons/fi";
+import { FiBookOpen, FiImage, FiFileText, FiArrowLeft, FiSave } from "react-icons/fi";
 
 export default function AddEditCourse() {
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ export default function AddEditCourse() {
   return (
     <div style={{ minHeight: "calc(100vh - 64px)", padding: "3rem 1.5rem" }}>
       <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-        {}
+        {/* Navigation Section */}
         <button
           onClick={() => navigate("/admin/dashboard")}
           style={{
@@ -89,7 +89,7 @@ export default function AddEditCourse() {
           Back to Dashboard
         </button>
 
-        {}
+        {/* Header Section */}
         <div style={{ marginBottom: "2rem" }}>
           <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem", fontWeight: 800, color: "#e2e8f0" }}>
             {isEditing ? "✏️ Edit Course" : "➕ Add New Course"}
@@ -99,10 +99,10 @@ export default function AddEditCourse() {
           </p>
         </div>
 
-        {}
+        {/* Form Card */}
         <div className="glass-card" style={{ padding: "2rem" }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            {}
+            {/* Title Field */}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
                 <FiBookOpen size={14} style={{ marginRight: "0.4rem" }} />
@@ -117,7 +117,7 @@ export default function AddEditCourse() {
               />
             </div>
 
-            {}
+            {/* Description Field */}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
                 <FiFileText size={14} style={{ marginRight: "0.4rem" }} />
@@ -134,10 +134,9 @@ export default function AddEditCourse() {
               />
             </div>
 
-            {}
+            {/* Price Field */}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                <FiDollarSign size={14} style={{ marginRight: "0.4rem" }} />
                 Price (USD) *
               </label>
               <div style={{ position: "relative" }}>

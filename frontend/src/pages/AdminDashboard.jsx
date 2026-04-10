@@ -9,7 +9,7 @@ import { useAuth } from "../context/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
 import toast from "react-hot-toast";
 import {
-  FiPlus, FiEdit2, FiBookOpen, FiDollarSign,
+  FiPlus, FiEdit2, FiBookOpen,
   FiShield, FiTrendingUp, FiGrid,
 } from "react-icons/fi";
 
@@ -45,7 +45,7 @@ export default function AdminDashboard() {
   return (
     <div style={{ minHeight: "calc(100vh - 64px)", padding: "2.5rem 1.5rem" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {}
+        {/* Header Section */}
         <div
           style={{
             display: "flex", alignItems: "flex-start", justifyContent: "space-between",
@@ -72,7 +72,7 @@ export default function AdminDashboard() {
             </p>
           </div>
 
-          {}
+          {/* Action Buttons */}
           <button
             id="add-course-btn"
             onClick={() => navigate("/admin/course/new")}
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
           </button>
         </div>
 
-        {}
+        {/* Stats Grid */}
         <div
           style={{
             display: "grid",
@@ -100,7 +100,6 @@ export default function AdminDashboard() {
             color="#6366f1"
           />
           <StatCard
-            icon={<FiDollarSign size={20} color="#10b981" />}
             label="Total Value"
             value={`$${totalRevenuePotential.toLocaleString()}`}
             color="#10b981"
@@ -113,13 +112,13 @@ export default function AdminDashboard() {
           />
         </div>
 
-        {}
+        {/* Courses Section */}
         <div>
           <h2 style={{ margin: "0 0 1.25rem", fontSize: "1.1rem", fontWeight: 700, color: "#94a3b8" }}>
             Your Courses ({courses.length})
           </h2>
 
-          {}
+          {/* Empty State */}
           {courses.length === 0 && (
             <div
               className="glass-card"

@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { getUserPurchases } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { FiBookOpen, FiCheckCircle, FiArrowRight } from "react-icons/fi";
+import { FiBookOpen, FiArrowRight } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function PurchasedCourses() {
@@ -39,7 +39,7 @@ export default function PurchasedCourses() {
   return (
     <div style={{ minHeight: "calc(100vh - 64px)", padding: "3rem 1.5rem" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {}
+        {/* Header Section */}
         <div style={{ marginBottom: "2.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div
@@ -60,7 +60,7 @@ export default function PurchasedCourses() {
           </p>
         </div>
 
-        {}
+        {/* Enrollment Stats */}
         {courses.length > 0 && (
           <div
             className="glass-card"
@@ -74,7 +74,6 @@ export default function PurchasedCourses() {
               border: "1px solid rgba(37,99,235,0.2)",
             }}
           >
-            <FiCheckCircle size={20} color="#10b981" />
             <span style={{ color: "var(--color-text)", fontWeight: 500 }}>
               You're enrolled in{" "}
               <strong style={{ color: "#6366f1" }}>{courses.length}</strong>{" "}
@@ -83,7 +82,7 @@ export default function PurchasedCourses() {
           </div>
         )}
 
-        {}
+        {/* Empty State */}
         {courses.length === 0 && (
           <div
             className="glass-card"
@@ -113,7 +112,7 @@ export default function PurchasedCourses() {
           </div>
         )}
 
-        {}
+        {/* Grid Container */}
         {courses.length > 0 && (
           <div
             style={{
@@ -143,7 +142,7 @@ export default function PurchasedCourses() {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {}
+                {/* Image Section */}
                 <div style={{ position: "relative", height: "160px", overflow: "hidden" }}>
                   <img
                     src={course.imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"}
@@ -162,7 +161,7 @@ export default function PurchasedCourses() {
                       display: "flex", alignItems: "center", gap: "0.3rem",
                     }}
                   >
-                    <FiCheckCircle size={12} /> Enrolled
+                    Enrolled
                   </div>
                   <div
                     style={{
