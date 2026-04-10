@@ -1,6 +1,6 @@
-// src/components/CourseCard.jsx
-// Displays a single course with purchase state awareness.
-// Shows "Purchased" badge if already bought, disables button if so.
+
+
+
 
 import React, { useState } from "react";
 import { FiDollarSign, FiCheckCircle, FiShoppingCart, FiLoader } from "react-icons/fi";
@@ -9,13 +9,13 @@ import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
+const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
   const [loading, setLoading] = useState(false);
   const { isUserLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handlePurchase = async () => {
-    // Redirect to login if not authenticated
+
     if (!isUserLoggedIn) {
       toast.error("Please login to purchase courses");
       navigate("/login");
@@ -26,7 +26,7 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
     try {
       await purchaseCourse(course._id);
       toast.success("Course purchased successfully! 🎉");
-      if (onPurchaseSuccess) onPurchaseSuccess(course._id); // Update parent state
+      if (onPurchaseSuccess) onPurchaseSuccess(course._id); 
     } catch (err) {
       const message = err.response?.data?.message || "Purchase failed. Try again.";
       toast.error(message);
@@ -48,18 +48,8 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
         flexDirection: "column",
         boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-4px)";
-        e.currentTarget.style.boxShadow = "0 12px 40px rgba(37,99,235,0.15)";
-        e.currentTarget.style.borderColor = "rgba(37,99,235,0.3)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)";
-        e.currentTarget.style.borderColor = "var(--color-border)";
-      }}
     >
-      {/* Course Image */}
+      {}
       <div style={{ position: "relative", overflow: "hidden", height: "180px" }}>
         <img
           src={course.imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"}
@@ -70,13 +60,11 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
             objectFit: "cover",
             transition: "transform 0.3s ease",
           }}
-          onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
-          onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           onError={(e) => {
             e.target.src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800";
           }}
         />
-        {/* Overlay gradient */}
+        {}
         <div
           style={{
             position: "absolute",
@@ -84,17 +72,17 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
             left: 0,
             right: 0,
             height: "60px",
-            background: "linear-gradient(transparent, rgba(255,255,255,0.9))",
+            background: "rgba(255,255,255,0.85)",
           }}
         />
-        {/* Purchased Badge */}
+        {}
         {isPurchased && (
           <div
             style={{
               position: "absolute",
               top: "10px",
               right: "10px",
-              background: "linear-gradient(135deg, #10b981, #059669)",
+              background: "#10b981",
               color: "white",
               padding: "0.25rem 0.75rem",
               borderRadius: "20px",
@@ -112,7 +100,7 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
         )}
       </div>
 
-      {/* Course Content */}
+      {}
       <div
         style={{
           padding: "1.25rem",
@@ -154,7 +142,7 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
           {course.description}
         </p>
 
-        {/* Price + Buy Button */}
+        {}
         <div
           style={{
             display: "flex",
@@ -245,3 +233,4 @@ export default function CourseCard({ course, isPurchased, onPurchaseSuccess }) {
     </div>
   );
 }
+export default CourseCard

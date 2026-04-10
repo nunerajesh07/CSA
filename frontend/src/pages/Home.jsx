@@ -1,7 +1,7 @@
-// src/pages/Home.jsx
-// Main course listing page. Public — anyone can view.
-// Shows "Purchased" badge for items the logged-in user owns.
-// Includes search and filter functionality.
+
+
+
+
 
 import React, { useState, useEffect } from "react";
 import { getCoursesPreview, getUserPurchases } from "../services/api";
@@ -13,13 +13,12 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [courses, setCourses] = useState([]);
-  const [purchasedIds, setPurchasedIds] = useState(new Set()); // Set of purchased course IDs
+  const [purchasedIds, setPurchasedIds] = useState(new Set()); 
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("newest"); // newest | price-low | price-high
+  const [sortBy, setSortBy] = useState("newest"); 
   const { isUserLoggedIn } = useAuth();
 
-  // Fetch courses and purchases on mount
   useEffect(() => {
     fetchData();
   }, [isUserLoggedIn]);
@@ -27,11 +26,10 @@ export default function Home() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      // Fetch all courses (public)
+
       const coursesRes = await getCoursesPreview();
       setCourses(coursesRes.data.courses);
 
-      // Fetch purchased courses only if user is logged in
       if (isUserLoggedIn) {
         const purchasesRes = await getUserPurchases();
         const ids = new Set(purchasesRes.data.courses.map((c) => c._id));
@@ -44,31 +42,28 @@ export default function Home() {
     }
   };
 
-  // Called after a successful purchase to update the UI without re-fetching
   const handlePurchaseSuccess = (courseId) => {
     setPurchasedIds((prev) => new Set([...prev, courseId]));
   };
 
-  // Filter by search query
   const filtered = courses.filter(
     (c) =>
       c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Sort courses
   const sorted = [...filtered].sort((a, b) => {
     if (sortBy === "price-low") return a.price - b.price;
     if (sortBy === "price-high") return b.price - a.price;
-    return new Date(b.createdAt) - new Date(a.createdAt); // newest first
+    return new Date(b.createdAt) - new Date(a.createdAt); 
   });
 
   return (
     <div style={{ minHeight: "calc(100vh - 64px)" }}>
-      {/* Hero Section */}
+      {}
       <div
         style={{
-          background: "linear-gradient(135deg, rgba(37,99,235,0.05) 0%, rgba(124,58,237,0.03) 50%, transparent 100%)",
+          background: "rgba(37,99,235,0.04)",
           borderBottom: "1px solid var(--color-border)",
           padding: "4rem 1.5rem 3rem",
           textAlign: "center",
@@ -125,9 +120,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem 1.5rem" }}>
-        {/* Search & Filter Bar */}
+        {}
         <div
           style={{
             display: "flex",
@@ -136,7 +131,7 @@ export default function Home() {
             flexWrap: "wrap",
           }}
         >
-          {/* Search Input */}
+          {}
           <div style={{ position: "relative", flex: 1, minWidth: "200px" }}>
             <FiSearch
               size={16}
@@ -153,7 +148,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Sort Dropdown */}
+          {}
           <div style={{ position: "relative", display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <FiFilter size={16} color="#64748b" />
             <select
@@ -170,7 +165,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Results Count */}
+        {}
         <div style={{ marginBottom: "1.5rem", color: "#64748b", fontSize: "0.875rem" }}>
           {searchQuery ? (
             <span>
@@ -198,10 +193,10 @@ export default function Home() {
           )}
         </div>
 
-        {/* Loading State */}
+        {}
         {loading && <LoadingSpinner message="Loading courses..." />}
 
-        {/* Empty State */}
+        {}
         {!loading && sorted.length === 0 && (
           <div
             style={{
@@ -222,7 +217,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* Course Grid */}
+        {}
         {!loading && sorted.length > 0 && (
           <div
             style={{

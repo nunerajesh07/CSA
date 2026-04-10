@@ -1,5 +1,5 @@
-// src/pages/Login.jsx
-// User login page with form validation and JWT storage.
+
+
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ export default function Login() {
       const res = await userSignin(formData);
       loginUser(res.data.user, res.data.token);
       toast.success(`Welcome back, ${res.data.user.firstname}! 👋`);
-      navigate("/"); // Redirect to home after login
+      navigate("/"); 
     } catch (err) {
       const message = err.response?.data?.message || "Login failed. Please try again.";
       toast.error(message);
@@ -48,21 +48,21 @@ export default function Login() {
         alignItems: "center",
         justifyContent: "center",
         padding: "2rem 1rem",
-        background: "radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.05) 0%, transparent 70%)",
+        background: "rgba(37,99,235,0.03)",
       }}
     >
       <div
         className="glass-card animate-fade-in-up"
         style={{ width: "100%", maxWidth: "420px", padding: "2.5rem" }}
       >
-        {/* Header */}
+        {}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <div
             style={{
               width: "56px",
               height: "56px",
               borderRadius: "16px",
-              background: "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+              background: "var(--color-primary)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -87,9 +87,9 @@ export default function Login() {
           </p>
         </div>
 
-        {/* Form */}
+        {}
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {/* Email Field */}
+          {}
           <div>
             <label style={{ display: "block", color: "var(--color-muted)", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>
               Email Address
@@ -113,7 +113,7 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Password Field */}
+          {}
           <div>
             <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>
               Password
@@ -147,7 +147,7 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Submit Button */}
+          {}
           <button
             id="login-submit"
             type="submit"
@@ -164,7 +164,7 @@ export default function Login() {
           </button>
         </form>
 
-        {/* Footer Links */}
+        {}
         <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
           <p style={{ color: "#64748b", fontSize: "0.875rem" }}>
             Don't have an account?{" "}

@@ -1,5 +1,5 @@
-// routes/admin.js
-// Handles admin signup, signin, and all course management (CRUD).
+
+
 
 const express = require("express");
 const bcrypt = require("bcrypt");
@@ -11,10 +11,9 @@ const { JWT_ADMIN_SECRET } = require("../config");
 
 const router = express.Router();
 
-// ─────────────────────────────────────────────
-// POST /admin/signup
-// Creates a new admin account
-// ─────────────────────────────────────────────
+
+
+
 router.post("/signup", async (req, res) => {
   try {
     const { email, password, firstname, lastname } = req.body;
@@ -26,13 +25,11 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ message: "Password must be at least 6 characters." });
     }
 
-    // Check for duplicate email
     const existing = await Admin.findOne({ email: email.toLowerCase() });
     if (existing) {
       return res.status(409).json({ message: "Email already in use." });
     }
 
-    // Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const admin = await Admin.create({
@@ -42,7 +39,6 @@ router.post("/signup", async (req, res) => {
       lastname,
     });
 
-    // Sign with ADMIN secret (different from user secret!)
     const token = jwt.sign({ id: admin._id }, JWT_ADMIN_SECRET, { expiresIn: "7d" });
 
     res.status(201).json({
@@ -61,10 +57,9 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────
-// POST /admin/signin
-// Authenticates admin and returns JWT
-// ─────────────────────────────────────────────
+
+
+
 router.post("/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -101,10 +96,9 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────
-// POST /admin/course
-// Protected — admin creates a new course
-// ─────────────────────────────────────────────
+
+
+
 router.post("/course", adminAuth, async (req, res) => {
   try {
     const { title, description, price, imageURL } = req.body;
@@ -118,7 +112,7 @@ router.post("/course", adminAuth, async (req, res) => {
       description,
       price: Number(price),
       imageURL: imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
-      creatorId: req.adminId, // From adminAuth middleware
+      creatorId: req.adminId,
     });
 
     res.status(201).json({ message: "Course created successfully!", course });
@@ -128,11 +122,10 @@ router.post("/course", adminAuth, async (req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────
-// PUT /admin/course
-// Protected — admin updates an existing course
-// courseId must be sent in request body
-// ─────────────────────────────────────────────
+
+
+
+
 router.put("/course", adminAuth, async (req, res) => {
   try {
     const { courseId, title, description, price, imageURL } = req.body;
@@ -141,7 +134,6 @@ router.put("/course", adminAuth, async (req, res) => {
       return res.status(400).json({ message: "Course ID is required." });
     }
 
-    // Make sure this course was created by the requesting admin
     const course = await Course.findOne({ _id: courseId, creatorId: req.adminId });
     if (!course) {
       return res.status(404).json({ message: "Course not found or access denied." });

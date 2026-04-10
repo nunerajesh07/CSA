@@ -1,6 +1,6 @@
-// models/Course.js
-// Mongoose schema for courses created by admins.
-// creatorId links the course back to the admin who created it.
+
+
+
 
 const mongoose = require("mongoose");
 
@@ -24,7 +24,7 @@ const courseSchema = new mongoose.Schema(
       type: String,
       default: "https://via.placeholder.com/400x250?text=Course+Image",
     },
-    // Reference to the Admin who created this course
+
     creatorId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",

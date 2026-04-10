@@ -1,6 +1,6 @@
-// src/pages/AddEditCourse.jsx
-// Form page for creating a new course or editing an existing one.
-// Accessed by admin via /admin/course/new or /admin/course/edit/:id.
+
+
+
 
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -14,7 +14,6 @@ export default function AddEditCourse() {
   const location = useLocation();
   const { isAdminLoggedIn } = useAuth();
 
-  // If editing, course data is passed via React Router state
   const editCourse = location.state?.course || null;
   const isEditing = !!editCourse;
 
@@ -27,7 +26,6 @@ export default function AddEditCourse() {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState(editCourse?.imageURL || "");
 
-  // Redirect if not admin
   useEffect(() => {
     if (!isAdminLoggedIn) {
       navigate("/admin/login");
@@ -55,11 +53,11 @@ export default function AddEditCourse() {
     setLoading(true);
     try {
       if (isEditing) {
-        // Update existing course — send courseId along with updated fields
+
         await updateCourse({ courseId: editCourse._id, ...formData });
         toast.success("Course updated successfully! ✅");
       } else {
-        // Create new course
+
         await createCourse(formData);
         toast.success("Course created successfully! 🎉");
       }
@@ -75,7 +73,7 @@ export default function AddEditCourse() {
   return (
     <div style={{ minHeight: "calc(100vh - 64px)", padding: "3rem 1.5rem" }}>
       <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-        {/* Back Button */}
+        {}
         <button
           onClick={() => navigate("/admin/dashboard")}
           style={{
@@ -91,7 +89,7 @@ export default function AddEditCourse() {
           Back to Dashboard
         </button>
 
-        {/* Page Header */}
+        {}
         <div style={{ marginBottom: "2rem" }}>
           <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.75rem", fontWeight: 800, color: "#e2e8f0" }}>
             {isEditing ? "✏️ Edit Course" : "➕ Add New Course"}
@@ -101,10 +99,10 @@ export default function AddEditCourse() {
           </p>
         </div>
 
-        {/* Form Card */}
+        {}
         <div className="glass-card" style={{ padding: "2rem" }}>
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            {/* Title */}
+            {}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
                 <FiBookOpen size={14} style={{ marginRight: "0.4rem" }} />
@@ -119,7 +117,7 @@ export default function AddEditCourse() {
               />
             </div>
 
-            {/* Description */}
+            {}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
                 <FiFileText size={14} style={{ marginRight: "0.4rem" }} />
@@ -136,7 +134,7 @@ export default function AddEditCourse() {
               />
             </div>
 
-            {/* Price */}
+            {}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
                 <FiDollarSign size={14} style={{ marginRight: "0.4rem" }} />
@@ -154,7 +152,7 @@ export default function AddEditCourse() {
               </div>
             </div>
 
-            {/* Image URL */}
+            {}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
                 <FiImage size={14} style={{ marginRight: "0.4rem" }} />
@@ -168,7 +166,7 @@ export default function AddEditCourse() {
                 className="input-field"
               />
 
-              {/* Image Preview */}
+              {}
               {imagePreview && (
                 <div style={{ marginTop: "0.75rem" }}>
                   <img
@@ -186,7 +184,7 @@ export default function AddEditCourse() {
               )}
             </div>
 
-            {/* Submit Button */}
+            {}
             <div style={{ display: "flex", gap: "1rem", marginTop: "0.5rem" }}>
               <button
                 type="button" onClick={() => navigate("/admin/dashboard")}

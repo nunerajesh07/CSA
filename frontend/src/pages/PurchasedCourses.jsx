@@ -1,6 +1,6 @@
-// src/pages/PurchasedCourses.jsx
-// Shows all courses the logged-in user has purchased.
-// Redirects to login if not authenticated.
+
+
+
 
 import React, { useState, useEffect } from "react";
 import { getUserPurchases } from "../services/api";
@@ -15,7 +15,6 @@ export default function PurchasedCourses() {
   const { isUserLoggedIn, user } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect to login if not authenticated
   useEffect(() => {
     if (!isUserLoggedIn) {
       navigate("/login");
@@ -40,13 +39,13 @@ export default function PurchasedCourses() {
   return (
     <div style={{ minHeight: "calc(100vh - 64px)", padding: "3rem 1.5rem" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Page Header */}
+        {}
         <div style={{ marginBottom: "2.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div
               style={{
                 width: "40px", height: "40px", borderRadius: "10px",
-                background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                background: "#6366f1",
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}
             >
@@ -61,7 +60,7 @@ export default function PurchasedCourses() {
           </p>
         </div>
 
-        {/* Stats Bar */}
+        {}
         {courses.length > 0 && (
           <div
             className="glass-card"
@@ -84,7 +83,7 @@ export default function PurchasedCourses() {
           </div>
         )}
 
-        {/* Empty State */}
+        {}
         {courses.length === 0 && (
           <div
             className="glass-card"
@@ -114,7 +113,7 @@ export default function PurchasedCourses() {
           </div>
         )}
 
-        {/* Course Grid */}
+        {}
         {courses.length > 0 && (
           <div
             style={{
@@ -144,7 +143,7 @@ export default function PurchasedCourses() {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {/* Course Image */}
+                {}
                 <div style={{ position: "relative", height: "160px", overflow: "hidden" }}>
                   <img
                     src={course.imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"}
@@ -157,7 +156,7 @@ export default function PurchasedCourses() {
                   <div
                     style={{
                       position: "absolute", top: "10px", right: "10px",
-                      background: "linear-gradient(135deg, #10b981, #059669)",
+                      background: "#10b981",
                       color: "white", padding: "0.25rem 0.75rem",
                       borderRadius: "20px", fontSize: "0.75rem", fontWeight: 600,
                       display: "flex", alignItems: "center", gap: "0.3rem",
@@ -169,12 +168,12 @@ export default function PurchasedCourses() {
                     style={{
                       position: "absolute", bottom: 0, left: 0, right: 0,
                       height: "60px",
-                      background: "linear-gradient(transparent, rgba(15,15,26,0.9))",
+                      background: "rgba(15,15,26,0.7)",
                     }}
                   />
                 </div>
 
-                {/* Course Info */}
+                {}
                 <div style={{ padding: "1.25rem" }}>
                   <h3
                     style={{
@@ -218,7 +217,7 @@ export default function PurchasedCourses() {
           </div>
         )}
 
-        {/* Bottom CTA */}
+        {}
         {courses.length > 0 && (
           <div style={{ textAlign: "center", marginTop: "3rem" }}>
             <Link to="/">

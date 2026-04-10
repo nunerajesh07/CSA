@@ -1,6 +1,6 @@
-// config.js
-// Loads environment variables and exports configuration constants.
-// All sensitive values (secrets, DB URI) come from .env — never hardcode them.
+
+
+
 
 require("dotenv").config();
 

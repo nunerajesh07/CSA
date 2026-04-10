@@ -1,9 +1,9 @@
-// src/components/LoadingSpinner.jsx
-// Full-page loading spinner with customizable message.
+
+
 
 import React from "react";
 
-export default function LoadingSpinner({ message = "Loading..." }) {
+const LoadingSpinner=({ message = "Loading..." })=> {
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ export default function LoadingSpinner({ message = "Loading..." }) {
         color: "#94a3b8",
       }}
     >
-      {/* Animated spinner ring */}
+      {}
       <div
         style={{
           width: "48px",
@@ -37,3 +37,4 @@ export default function LoadingSpinner({ message = "Loading..." }) {
     </div>
   );
 }
+export default LoadingSpinner

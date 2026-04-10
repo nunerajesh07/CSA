@@ -1,5 +1,5 @@
-// src/pages/Signup.jsx
-// User registration page with form validation and immediate JWT login.
+
+
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -57,19 +57,19 @@ export default function Signup() {
         alignItems: "center",
         justifyContent: "center",
         padding: "2rem 1rem",
-        background: "radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.05) 0%, transparent 70%)",
+        background: "rgba(37,99,235,0.03)",
       }}
     >
       <div
         className="glass-card animate-fade-in-up"
         style={{ width: "100%", maxWidth: "440px", padding: "2.5rem" }}
       >
-        {/* Header */}
+        {}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <div
             style={{
               width: "56px", height: "56px", borderRadius: "16px",
-              background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+              background: "#6366f1",
               display: "flex", alignItems: "center", justifyContent: "center",
               margin: "0 auto 1rem", boxShadow: "0 8px 24px rgba(37,99,235,0.3)",
             }}
@@ -79,8 +79,7 @@ export default function Signup() {
           <h1
             style={{
               margin: "0 0 0.5rem", fontSize: "1.75rem", fontWeight: 800,
-              background: "linear-gradient(135deg, #e2e8f0, #94a3b8)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              color: "var(--color-text)",
             }}
           >
             Create Account
@@ -90,9 +89,9 @@ export default function Signup() {
           </p>
         </div>
 
-        {/* Form */}
+        {}
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {/* Name Row */}
+          {}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>
@@ -124,7 +123,7 @@ export default function Signup() {
             </div>
           </div>
 
-          {/* Email */}
+          {}
           <div>
             <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>
               Email Address
@@ -140,7 +139,7 @@ export default function Signup() {
             </div>
           </div>
 
-          {/* Password */}
+          {}
           <div>
             <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>
               Password <span style={{ color: "#64748b", fontWeight: 400 }}>(min. 6 characters)</span>
@@ -163,7 +162,7 @@ export default function Signup() {
             </div>
           </div>
 
-          {/* Submit */}
+          {}
           <button
             id="signup-submit"
             type="submit" disabled={loading}

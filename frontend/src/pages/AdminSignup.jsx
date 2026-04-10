@@ -1,5 +1,5 @@
-// src/pages/AdminSignup.jsx
-// Admin registration page.
+
+
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -50,7 +50,7 @@ export default function AdminSignup() {
         minHeight: "calc(100vh - 64px)",
         display: "flex", alignItems: "center", justifyContent: "center",
         padding: "2rem 1rem",
-        background: "radial-gradient(ellipse at 50% 0%, rgba(139,92,246,0.15) 0%, transparent 70%)",
+        background: "rgba(124,58,237,0.04)",
       }}
     >
       <div className="glass-card animate-fade-in-up" style={{ width: "100%", maxWidth: "440px", padding: "2.5rem" }}>
@@ -58,7 +58,7 @@ export default function AdminSignup() {
           <div
             style={{
               width: "56px", height: "56px", borderRadius: "16px",
-              background: "linear-gradient(135deg, #7c3aed, #6366f1)",
+              background: "#7c3aed",
               display: "flex", alignItems: "center", justifyContent: "center",
               margin: "0 auto 1rem", boxShadow: "0 8px 24px rgba(124,58,237,0.4)",
             }}
@@ -68,8 +68,7 @@ export default function AdminSignup() {
           <h1
             style={{
               margin: "0 0 0.5rem", fontSize: "1.75rem", fontWeight: 800,
-              background: "linear-gradient(135deg, #e2e8f0, #94a3b8)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              color: "var(--color-text)",
             }}
           >
             Create Admin Account
@@ -118,7 +117,7 @@ export default function AdminSignup() {
             id="admin-signup-submit" type="submit" disabled={loading}
             style={{
               width: "100%", marginTop: "0.5rem", padding: "0.875rem",
-              background: "linear-gradient(135deg, #7c3aed, #6366f1)",
+              background: "#7c3aed",
               color: "white", border: "none", borderRadius: "10px",
               fontWeight: 600, fontSize: "0.95rem", cursor: "pointer",
               boxShadow: "0 4px 15px rgba(124,58,237,0.4)",

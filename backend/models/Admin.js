@@ -1,6 +1,3 @@
-// models/Admin.js
-// Mongoose schema for admin users (course creators).
-// Stored in a separate collection from regular users for security.
 
 const mongoose = require("mongoose");
 

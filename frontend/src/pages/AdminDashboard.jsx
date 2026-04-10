@@ -1,6 +1,6 @@
-// src/pages/AdminDashboard.jsx
-// Admin dashboard — shows all courses created by the logged-in admin.
-// Provides Add New Course and Edit Course actions.
+
+
+
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,6 @@ export default function AdminDashboard() {
   const { isAdminLoggedIn, admin } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if not admin
   useEffect(() => {
     if (!isAdminLoggedIn) {
       navigate("/admin/login");
@@ -46,7 +45,7 @@ export default function AdminDashboard() {
   return (
     <div style={{ minHeight: "calc(100vh - 64px)", padding: "2.5rem 1.5rem" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Header */}
+        {}
         <div
           style={{
             display: "flex", alignItems: "flex-start", justifyContent: "space-between",
@@ -58,7 +57,7 @@ export default function AdminDashboard() {
               <div
                 style={{
                   width: "40px", height: "40px", borderRadius: "10px",
-                  background: "linear-gradient(135deg, #7c3aed, #6366f1)",
+                  background: "#7c3aed",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}
               >
@@ -73,7 +72,7 @@ export default function AdminDashboard() {
             </p>
           </div>
 
-          {/* Add New Course Button */}
+          {}
           <button
             id="add-course-btn"
             onClick={() => navigate("/admin/course/new")}
@@ -85,7 +84,7 @@ export default function AdminDashboard() {
           </button>
         </div>
 
-        {/* Stats Cards */}
+        {}
         <div
           style={{
             display: "grid",
@@ -114,13 +113,13 @@ export default function AdminDashboard() {
           />
         </div>
 
-        {/* Courses Section */}
+        {}
         <div>
           <h2 style={{ margin: "0 0 1.25rem", fontSize: "1.1rem", fontWeight: 700, color: "#94a3b8" }}>
             Your Courses ({courses.length})
           </h2>
 
-          {/* Empty State */}
+          {}
           {courses.length === 0 && (
             <div
               className="glass-card"
@@ -152,7 +151,7 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          {/* Course Cards Grid */}
+          {}
           {courses.length > 0 && (
             <div
               style={{
@@ -184,7 +183,7 @@ export default function AdminDashboard() {
                     e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
                   }}
                 >
-                  {/* Image */}
+                  {}
                   <div style={{ height: "160px", overflow: "hidden" }}>
                     <img
                       src={course.imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"}
@@ -196,7 +195,7 @@ export default function AdminDashboard() {
                     />
                   </div>
 
-                  {/* Content */}
+                  {}
                   <div style={{ padding: "1.25rem" }}>
                     <h3 style={{ margin: "0 0 0.5rem", fontSize: "1rem", fontWeight: 700, color: "#e2e8f0", lineHeight: 1.4 }}>
                       {course.title}
@@ -211,7 +210,7 @@ export default function AdminDashboard() {
                       {course.description}
                     </p>
 
-                    {/* Footer */}
+                    {}
                     <div
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -257,7 +256,6 @@ export default function AdminDashboard() {
   );
 }
 
-// Stats card sub-component
 function StatCard({ icon, label, value, color }) {
   return (
     <div
@@ -287,7 +285,6 @@ function StatCard({ icon, label, value, color }) {
   );
 }
 
-// Helper: convert hex color to rgb for rgba()
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result

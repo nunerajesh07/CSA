@@ -1,6 +1,6 @@
-// models/User.js
-// Mongoose schema for regular users (learners/students).
-// Passwords are stored as bcrypt hashes — never plain text.
+
+
+
 
 const mongoose = require("mongoose");
 
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { timestamps: true } // adds createdAt and updatedAt automatically
+  { timestamps: true } 
 );
 
 module.exports = mongoose.model("User", userSchema);

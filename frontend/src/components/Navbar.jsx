@@ -1,19 +1,18 @@
-// src/components/Navbar.jsx
-// Responsive navigation bar for EduMaster.
-// Shows different links based on whether user/admin is logged in.
+
+
+
 
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { FiMenu, FiX, FiBookOpen, FiLogOut, FiUser, FiShield } from "react-icons/fi";
 
-export default function Navbar() {
+const Navbar =() =>{
   const { user, admin, logoutUser, logoutAdmin, isUserLoggedIn, isAdminLoggedIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Determine if we're on admin pages
   const isAdminPage = location.pathname.startsWith("/admin");
 
   const handleUserLogout = () => {
@@ -50,7 +49,7 @@ export default function Navbar() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
+        {}
         <Link
           to="/"
           style={{
@@ -65,7 +64,7 @@ export default function Navbar() {
               width: "36px",
               height: "36px",
               borderRadius: "10px",
-              background: "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+              background: "var(--color-primary)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -85,7 +84,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Nav Links */}
+        {}
         <div
           style={{
             display: "flex",
@@ -94,7 +93,7 @@ export default function Navbar() {
           }}
           className="hidden-mobile"
         >
-          {/* User logged in */}
+          {}
           {isUserLoggedIn && !isAdminPage && (
             <>
               <NavLink to="/">Courses</NavLink>
@@ -133,7 +132,7 @@ export default function Navbar() {
             </>
           )}
 
-          {/* Admin logged in */}
+          {}
           {isAdminLoggedIn && isAdminPage && (
             <>
               <NavLink to="/admin/dashboard">Dashboard</NavLink>
@@ -172,7 +171,7 @@ export default function Navbar() {
             </>
           )}
 
-          {/* Not logged in */}
+          {}
           {!isUserLoggedIn && !isAdminPage && (
             <>
               <NavLink to="/login">Login</NavLink>
@@ -208,7 +207,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
@@ -223,7 +222,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
+      {}
       {menuOpen && (
         <div
           style={{
@@ -266,7 +265,6 @@ export default function Navbar() {
   );
 }
 
-// Helper: Desktop nav link
 function NavLink({ to, children }) {
   const location = useLocation();
   const isActive = location.pathname === to;
@@ -289,7 +287,6 @@ function NavLink({ to, children }) {
   );
 }
 
-// Helper: Mobile nav link
 function MobileLink({ to, children, onClick }) {
   return (
     <Link
@@ -306,3 +303,4 @@ function MobileLink({ to, children, onClick }) {
     </Link>
   );
 }
+export default Navbar

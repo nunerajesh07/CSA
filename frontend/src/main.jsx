@@ -1,6 +1,6 @@
-// src/main.jsx
-// React application entry point.
-// Mounts the App component into the #root div in index.html.
+
+
+
 
 import React from "react";
 import ReactDOM from "react-dom/client";
