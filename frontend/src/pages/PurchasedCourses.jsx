@@ -6,7 +6,6 @@ import React, { useState, useEffect } from "react";
 import { getUserPurchases } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { FiBookOpen, FiArrowRight } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function PurchasedCourses() {
@@ -49,7 +48,7 @@ export default function PurchasedCourses() {
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}
             >
-              <FiBookOpen size={18} color="white" />
+              <span style={{ fontSize: "1.125rem", fontWeight: "bold", color: "white" }}>CSA</span>
             </div>
             <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800, color: "#e2e8f0" }}>
               My Courses
@@ -96,7 +95,7 @@ export default function PurchasedCourses() {
                 margin: "0 auto 1.5rem",
               }}
             >
-              <FiBookOpen size={36} color="#6366f1" />
+              <span style={{ fontSize: "2.5rem" }}>📚</span>
             </div>
             <h2 style={{ margin: "0 0 0.75rem", color: "#e2e8f0", fontSize: "1.5rem", fontWeight: 700 }}>
               No courses yet
@@ -106,7 +105,7 @@ export default function PurchasedCourses() {
             </p>
             <Link to="/">
               <button className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                Browse Courses <FiArrowRight size={16} />
+                Browse Courses →
               </button>
             </Link>
           </div>
@@ -210,7 +209,7 @@ export default function PurchasedCourses() {
           <div style={{ textAlign: "center", marginTop: "3rem" }}>
             <Link to="/">
               <button className="btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                Browse More Courses <FiArrowRight size={16} />
+                Browse More Courses →
               </button>
             </Link>
           </div>

@@ -8,7 +8,6 @@ import { getCoursesPreview, getUserPurchases } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import CourseCard from "../components/CourseCard";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { FiSearch, FiFilter, FiBookOpen, FiTrendingUp } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -85,8 +84,7 @@ export default function Home() {
               fontWeight: 500,
             }}
           >
-            <FiTrendingUp size={14} />
-            {courses.length}+ Courses Available
+            📈 {courses.length}+ Courses Available
           </div>
           <h1
             style={{
@@ -133,10 +131,6 @@ export default function Home() {
         >
           {}
           <div style={{ position: "relative", flex: 1, minWidth: "200px" }}>
-            <FiSearch
-              size={16}
-              style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }}
-            />
             <input
               id="course-search"
               type="text"
@@ -144,13 +138,11 @@ export default function Home() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="input-field"
-              style={{ paddingLeft: "2.5rem" }}
             />
           </div>
 
           {}
           <div style={{ position: "relative", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <FiFilter size={16} color="#64748b" />
             <select
               id="course-sort"
               value={sortBy}
@@ -205,7 +197,7 @@ export default function Home() {
               color: "#64748b",
             }}
           >
-            <FiBookOpen size={48} style={{ marginBottom: "1rem", opacity: 0.5 }} />
+            <span style={{ fontSize: "3rem", marginBottom: "1rem", opacity: 0.5 }}>📚</span>
             <h3 style={{ margin: "0 0 0.5rem", color: "#94a3b8" }}>
               {searchQuery ? "No courses found" : "No courses yet"}
             </h3>

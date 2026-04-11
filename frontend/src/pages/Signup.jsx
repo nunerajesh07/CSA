@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { userSignup } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { FiMail, FiLock, FiUser, FiBookOpen, FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -16,7 +15,6 @@ export default function Signup() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const { loginUser } = useAuth();
   const navigate = useNavigate();
 
@@ -74,7 +72,7 @@ export default function Signup() {
               margin: "0 auto 1rem", boxShadow: "0 8px 24px rgba(37,99,235,0.3)",
             }}
           >
-            <FiBookOpen size={24} color="white" />
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold", color: "white" }}>CSA</span>
           </div>
           <h1
             style={{
@@ -98,12 +96,11 @@ export default function Signup() {
                 First Name
               </label>
               <div style={{ position: "relative" }}>
-                <FiUser size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
                 <input
                   id="signup-firstname"
                   type="text" name="firstname" placeholder="John"
                   value={formData.firstname} onChange={handleChange}
-                  className="input-field" style={{ paddingLeft: "2.5rem" }} required
+                  className="input-field" required
                 />
               </div>
             </div>
@@ -112,12 +109,11 @@ export default function Signup() {
                 Last Name
               </label>
               <div style={{ position: "relative" }}>
-                <FiUser size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
                 <input
                   id="signup-lastname"
                   type="text" name="lastname" placeholder="Doe"
                   value={formData.lastname} onChange={handleChange}
-                  className="input-field" style={{ paddingLeft: "2.5rem" }} required
+                  className="input-field" required
                 />
               </div>
             </div>
@@ -129,12 +125,11 @@ export default function Signup() {
               Email Address
             </label>
             <div style={{ position: "relative" }}>
-              <FiMail size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
               <input
                 id="signup-email"
                 type="email" name="email" placeholder="you@example.com"
                 value={formData.email} onChange={handleChange}
-                className="input-field" style={{ paddingLeft: "2.5rem" }} required
+                className="input-field" required
               />
             </div>
           </div>
@@ -145,20 +140,13 @@ export default function Signup() {
               Password <span style={{ color: "#64748b", fontWeight: 400 }}>(min. 6 characters)</span>
             </label>
             <div style={{ position: "relative" }}>
-              <FiLock size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
               <input
                 id="signup-password"
-                type={showPassword ? "text" : "password"} name="password"
+                type="password" name="password"
                 placeholder="Create a strong password"
                 value={formData.password} onChange={handleChange}
-                className="input-field" style={{ paddingLeft: "2.5rem", paddingRight: "3rem" }} required
+                className="input-field" required
               />
-              <button
-                type="button" onClick={() => setShowPassword(!showPassword)}
-                style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", color: "#64748b", cursor: "pointer", padding: 0 }}
-              >
-                {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
-              </button>
             </div>
           </div>
 

@@ -5,7 +5,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { FiMenu, FiX, FiBookOpen, FiLogOut, FiUser, FiShield } from "react-icons/fi";
 
 const Navbar =() =>{
   const { user, admin, logoutUser, logoutAdmin, isUserLoggedIn, isAdminLoggedIn } = useAuth();
@@ -67,19 +66,13 @@ const Navbar =() =>{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-            }}
-          >
-            <FiBookOpen size={18} color="white" />
-          </div>
-          <span
-            style={{
-              fontWeight: 800,
               fontSize: "1.25rem",
-              WebkitBackgroundClip: "text",
+              fontWeight: "bold",
+              color: "white",
             }}
           >
-           CSA
-          </span>
+            CSA
+          </div>
         </Link>
 
         {}
@@ -106,7 +99,6 @@ const Navbar =() =>{
                   padding: "0.375rem 0.75rem",
                 }}
               >
-                <FiUser size={14} />
                 {user?.firstname}
               </span>
               <button
@@ -125,7 +117,7 @@ const Navbar =() =>{
                   fontWeight: 500,
                 }}
               >
-                <FiLogOut size={14} /> Logout
+                Logout
               </button>
             </>
           )}
@@ -145,7 +137,6 @@ const Navbar =() =>{
                   padding: "0.375rem 0.75rem",
                 }}
               >
-                <FiShield size={14} color="#6366f1" />
                 {admin?.firstname}
               </span>
               <button
@@ -164,7 +155,7 @@ const Navbar =() =>{
                   fontWeight: 500,
                 }}
               >
-                <FiLogOut size={14} /> Logout
+                Logout
               </button>
             </>
           )}
@@ -192,7 +183,7 @@ const Navbar =() =>{
                   borderRadius: "8px",
                 }}
               >
-                <FiShield size={13} /> Admin
+                Admin
               </Link>
             </>
           )}
@@ -216,7 +207,7 @@ const Navbar =() =>{
             padding: "0.5rem",
           }}
         >
-          {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+          {menuOpen ? "✕" : "☰"}
         </button>
       </div>
 

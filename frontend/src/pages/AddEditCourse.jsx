@@ -7,7 +7,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { createCourse, updateCourse } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { FiBookOpen, FiImage, FiFileText, FiArrowLeft, FiSave } from "react-icons/fi";
 
 export default function AddEditCourse() {
   const navigate = useNavigate();
@@ -55,11 +54,11 @@ export default function AddEditCourse() {
       if (isEditing) {
 
         await updateCourse({ courseId: editCourse._id, ...formData });
-        toast.success("Course updated successfully! ✅");
+        toast.success("Course updated successfully! ");
       } else {
 
         await createCourse(formData);
-        toast.success("Course created successfully! 🎉");
+        toast.success("Course created successfully! ");
       }
       navigate("/admin/dashboard");
     } catch (err) {
@@ -85,8 +84,7 @@ export default function AddEditCourse() {
           onMouseEnter={(e) => (e.currentTarget.style.color = "#6366f1")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
         >
-          <FiArrowLeft size={16} />
-          Back to Dashboard
+          ← Back to Dashboard
         </button>
 
         {/* Header Section */}
@@ -105,7 +103,6 @@ export default function AddEditCourse() {
             {/* Title Field */}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                <FiBookOpen size={14} style={{ marginRight: "0.4rem" }} />
                 Course Title *
               </label>
               <input
@@ -120,7 +117,6 @@ export default function AddEditCourse() {
             {/* Description Field */}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                <FiFileText size={14} style={{ marginRight: "0.4rem" }} />
                 Description *
               </label>
               <textarea
@@ -154,7 +150,6 @@ export default function AddEditCourse() {
             {}
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                <FiImage size={14} style={{ marginRight: "0.4rem" }} />
                 Course Image URL <span style={{ fontWeight: 400, color: "#64748b" }}>(optional)</span>
               </label>
               <input
@@ -203,7 +198,6 @@ export default function AddEditCourse() {
                   </>
                 ) : (
                   <>
-                    <FiSave size={16} />
                     {isEditing ? "Update Course" : "Create Course"}
                   </>
                 )}

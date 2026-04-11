@@ -6,12 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { userSignin } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { FiMail, FiLock, FiBookOpen, FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const { loginUser } = useAuth();
   const navigate = useNavigate();
 
@@ -70,7 +68,7 @@ export default function Login() {
               boxShadow: "0 8px 24px rgba(37,99,235,0.3)",
             }}
           >
-            <FiBookOpen size={24} color="white" />
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold", color: "white" }}>CSA</span>
           </div>
           <h1
             style={{
@@ -95,10 +93,6 @@ export default function Login() {
               Email Address
             </label>
             <div style={{ position: "relative" }}>
-              <FiMail
-                size={16}
-                style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }}
-              />
               <input
                 id="login-email"
                 type="email"
@@ -107,7 +101,6 @@ export default function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 className="input-field"
-                style={{ paddingLeft: "2.5rem" }}
                 required
               />
             </div>
@@ -119,31 +112,16 @@ export default function Login() {
               Password
             </label>
             <div style={{ position: "relative" }}>
-              <FiLock
-                size={16}
-                style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }}
-              />
               <input
                 id="login-password"
-                type={showPassword ? "text" : "password"}
+                type="password"
                 name="password"
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
                 className="input-field"
-                style={{ paddingLeft: "2.5rem", paddingRight: "3rem" }}
                 required
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                style={{
-                  position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)",
-                  background: "none", border: "none", color: "#64748b", cursor: "pointer", padding: 0,
-                }}
-              >
-                {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
-              </button>
             </div>
           </div>
 

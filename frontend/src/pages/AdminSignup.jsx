@@ -6,12 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { adminSignup } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import { FiMail, FiLock, FiUser, FiShield, FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function AdminSignup() {
   const [formData, setFormData] = useState({ firstname: "", lastname: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const { loginAdmin } = useAuth();
   const navigate = useNavigate();
 
@@ -63,7 +61,7 @@ export default function AdminSignup() {
               margin: "0 auto 1rem", boxShadow: "0 8px 24px rgba(124,58,237,0.4)",
             }}
           >
-            <FiShield size={24} color="white" />
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold", color: "white" }}>Admin</span>
           </div>
           <h1
             style={{
@@ -81,15 +79,13 @@ export default function AdminSignup() {
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>First Name</label>
               <div style={{ position: "relative" }}>
-                <FiUser size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
-                <input id="admin-signup-firstname" type="text" name="firstname" placeholder="Jane" value={formData.firstname} onChange={handleChange} className="input-field" style={{ paddingLeft: "2.5rem" }} required />
+                <input id="admin-signup-firstname" type="text" name="firstname" placeholder="Jane" value={formData.firstname} onChange={handleChange} className="input-field" required />
               </div>
             </div>
             <div>
               <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>Last Name</label>
               <div style={{ position: "relative" }}>
-                <FiUser size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
-                <input id="admin-signup-lastname" type="text" name="lastname" placeholder="Doe" value={formData.lastname} onChange={handleChange} className="input-field" style={{ paddingLeft: "2.5rem" }} required />
+                <input id="admin-signup-lastname" type="text" name="lastname" placeholder="Doe" value={formData.lastname} onChange={handleChange} className="input-field" required />
               </div>
             </div>
           </div>
@@ -97,19 +93,14 @@ export default function AdminSignup() {
           <div>
             <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>Admin Email</label>
             <div style={{ position: "relative" }}>
-              <FiMail size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
-              <input id="admin-signup-email" type="email" name="email" placeholder="admin@example.com" value={formData.email} onChange={handleChange} className="input-field" style={{ paddingLeft: "2.5rem" }} required />
+              <input id="admin-signup-email" type="email" name="email" placeholder="admin@example.com" value={formData.email} onChange={handleChange} className="input-field" required />
             </div>
           </div>
 
           <div>
             <label style={{ display: "block", color: "#94a3b8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.4rem" }}>Password</label>
             <div style={{ position: "relative" }}>
-              <FiLock size={16} style={{ position: "absolute", left: "0.875rem", top: "50%", transform: "translateY(-50%)", color: "#64748b" }} />
-              <input id="admin-signup-password" type={showPassword ? "text" : "password"} name="password" placeholder="Min. 6 characters" value={formData.password} onChange={handleChange} className="input-field" style={{ paddingLeft: "2.5rem", paddingRight: "3rem" }} required />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", color: "#64748b", cursor: "pointer", padding: 0 }}>
-                {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
-              </button>
+              <input id="admin-signup-password" type="password" name="password" placeholder="Min. 6 characters" value={formData.password} onChange={handleChange} className="input-field" required />
             </div>
           </div>
 

@@ -8,10 +8,6 @@ import { getAdminCourses } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
 import toast from "react-hot-toast";
-import {
-  FiPlus, FiEdit2, FiBookOpen,
-  FiShield, FiTrendingUp, FiGrid,
-} from "react-icons/fi";
 
 export default function AdminDashboard() {
   const [courses, setCourses] = useState([]);
@@ -61,7 +57,7 @@ export default function AdminDashboard() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}
               >
-                <FiShield size={18} color="white" />
+                <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "white" }}>Admin</span>
               </div>
               <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800, color: "#e2e8f0" }}>
                 Admin Dashboard
@@ -79,7 +75,7 @@ export default function AdminDashboard() {
             className="btn-primary"
             style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem" }}
           >
-            <FiPlus size={18} />
+            <span style={{ fontSize: "1.125rem", fontWeight: "bold" }}>+</span>
             Add New Course
           </button>
         </div>
@@ -94,7 +90,6 @@ export default function AdminDashboard() {
           }}
         >
           <StatCard
-            icon={<FiGrid size={20} color="#6366f1" />}
             label="Total Courses"
             value={courses.length}
             color="#6366f1"
@@ -105,7 +100,6 @@ export default function AdminDashboard() {
             color="#10b981"
           />
           <StatCard
-            icon={<FiTrendingUp size={20} color="#f59e0b" />}
             label="Avg. Price"
             value={courses.length > 0 ? `$${Math.round(totalRevenuePotential / courses.length)}` : "$0"}
             color="#f59e0b"
@@ -132,7 +126,7 @@ export default function AdminDashboard() {
                   margin: "0 auto 1.5rem",
                 }}
               >
-                <FiBookOpen size={36} color="var(--color-primary)" />
+                <span style={{ fontSize: "2rem" }}>📚</span>
               </div>
               <h3 style={{ margin: "0 0 0.75rem", color: "var(--color-text)", fontSize: "1.4rem", fontWeight: 700 }}>
                 No courses yet
@@ -145,7 +139,7 @@ export default function AdminDashboard() {
                 className="btn-primary"
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
               >
-                <FiPlus size={16} /> Create First Course
+                <span style={{ fontSize: "1rem", fontWeight: "bold" }}>+</span> Create First Course
               </button>
             </div>
           )}
@@ -221,7 +215,7 @@ export default function AdminDashboard() {
                           fontSize: "0.8rem", fontWeight: 600,
                         }}
                       >
-                        <FiEdit2 size={14} /> Edit
+                        Edit
                       </button>
                     </div>
                   </div>
@@ -235,7 +229,7 @@ export default function AdminDashboard() {
   );
 }
 
-function StatCard({ icon, label, value, color }) {
+function StatCard({ label, value, color }) {
   return (
     <div
       style={{
@@ -243,23 +237,11 @@ function StatCard({ icon, label, value, color }) {
         border: `1px solid rgba(${hexToRgb(color)}, 0.15)`,
         borderRadius: "14px",
         padding: "1.25rem",
-        display: "flex", alignItems: "center", gap: "1rem",
+        textAlign: "center",
       }}
     >
-      <div
-        style={{
-          width: "44px", height: "44px", borderRadius: "12px",
-          background: `rgba(${hexToRgb(color)}, 0.1)`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0,
-        }}
-      >
-        {icon}
-      </div>
-      <div>
-        <div style={{ color: "#64748b", fontSize: "0.75rem", fontWeight: 500, marginBottom: "0.2rem" }}>{label}</div>
-        <div style={{ color: "#e2e8f0", fontSize: "1.4rem", fontWeight: 800 }}>{value}</div>
-      </div>
+      <div style={{ color: "#64748b", fontSize: "0.75rem", fontWeight: 500, marginBottom: "0.2rem" }}>{label}</div>
+      <div style={{ color: "#e2e8f0", fontSize: "1.4rem", fontWeight: 800 }}>{value}</div>
     </div>
   );
 }
