@@ -5,7 +5,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000", 
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000", 
   timeout: 10000,
 });
 
@@ -14,16 +14,10 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-
-    const adminToken = localStorage.getItem("adminToken");
-    const userToken = localStorage.getItem("userToken");
-
-    if (config.url.startsWith("/admin") && adminToken) {
-      config.headers.Authorization = `Bearer ${adminToken}`;
-    } else if (userToken) {
-      config.headers.Authorization = `Bearer ${userToken}`;
+    const token = localStorage.getItem("userToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
   },
   (error) => Promise.reject(error)
@@ -38,7 +32,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401 || error.response?.status === 403) {
 
       localStorage.removeItem("userToken");
-      localStorage.removeItem("adminToken");
+      localStorage.removeItem("user"); // Also remove user data
     }
     return Promise.reject(error);
   }
@@ -58,8 +52,6 @@ export const purchaseCourse = (courseId) =>
 
 
 
-export const adminSignup = (data) => api.post("/admin/signup", data);
-export const adminSignin = (data) => api.post("/admin/signin", data);
 export const createCourse = (data) => api.post("/admin/course", data);
 export const updateCourse = (data) => api.put("/admin/course", data);
 export const getAdminCourses = () => api.get("/admin/course/bulk");
