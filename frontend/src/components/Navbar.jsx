@@ -22,7 +22,7 @@ const Navbar =() =>{
 
   const handleAdminLogout = () => {
     logoutAdmin();
-    navigate("/admin/login");
+    navigate("/login");
     setMenuOpen(false);
   };
 
@@ -169,31 +169,10 @@ const Navbar =() =>{
                   Get Started
                 </button>
               </Link>
-              <Link
-                to="/admin/login"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.3rem",
-                  color: "#6366f1",
-                  fontSize: "0.8rem",
-                  textDecoration: "none",
-                  padding: "0.375rem 0.75rem",
-                  border: "1px solid rgba(37,99,235,0.3)",
-                  borderRadius: "8px",
-                }}
-              >
-                Admin
-              </Link>
             </>
           )}
 
-          {!isAdminLoggedIn && isAdminPage && (
-            <>
-              <NavLink to="/admin/login">Admin Login</NavLink>
-              <NavLink to="/admin/signup">Admin Signup</NavLink>
-            </>
-          )}
+          {}
         </div>
 
         {}
@@ -236,7 +215,6 @@ const Navbar =() =>{
             <>
               <MobileLink to="/login" onClick={() => setMenuOpen(false)}>Login</MobileLink>
               <MobileLink to="/signup" onClick={() => setMenuOpen(false)}>Sign Up</MobileLink>
-              <MobileLink to="/admin/login" onClick={() => setMenuOpen(false)}>Admin Login</MobileLink>
             </>
           )}
           {isAdminLoggedIn && (

@@ -80,12 +80,13 @@ const CourseCard=({ course, isPurchased, onPurchaseSuccess })=> {
               background: "#10b981",
               color: "white",
               padding: "0.25rem 0.75rem",
-              borderRadius: "4px",
+              borderRadius: "20px",
               fontSize: "0.75rem",
               fontWeight: 600,
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
+              boxShadow: "0 2px 8px rgba(16,185,129,0.4)",
             }}
           >
             Purchased

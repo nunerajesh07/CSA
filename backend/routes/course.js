@@ -4,7 +4,7 @@
 const express = require("express");
 const Course = require("../models/Course");
 const Purchase = require("../models/Purchase");
-const userAuth = require("../middleware/userAuth");
+const { requireAuth, requireUser } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.get("/preview", async (req, res) => {
 
 
 
-router.post("/purchase", userAuth, async (req, res) => {
+router.post("/purchase", requireAuth, requireUser, async (req, res) => {
   try {
     const { courseId } = req.body;
     const userId = req.userId; 

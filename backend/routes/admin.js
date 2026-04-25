@@ -2,104 +2,15 @@
 
 
 const express = require("express");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const Admin = require("../models/Admin");
 const Course = require("../models/Course");
-const adminAuth = require("../middleware/adminAuth");
-const { JWT_ADMIN_SECRET } = require("../config");
+const { requireAuth, requireAdmin } = require("../middleware/auth");
 
 const router = express.Router();
 
 
 
 
-router.post("/signup", async (req, res) => {
-  try {
-    const { email, password, firstname, lastname } = req.body;
-
-    if (!email || !password || !firstname || !lastname) {
-      return res.status(400).json({ message: "All fields are required." });
-    }
-    if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters." });
-    }
-
-    const existing = await Admin.findOne({ email: email.toLowerCase() });
-    if (existing) {
-      return res.status(409).json({ message: "Email already in use." });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const admin = await Admin.create({
-      email: email.toLowerCase(),
-      password: hashedPassword,
-      firstname,
-      lastname,
-    });
-
-    const token = jwt.sign({ id: admin._id }, JWT_ADMIN_SECRET, { expiresIn: "7d" });
-
-    res.status(201).json({
-      message: "Admin account created successfully!",
-      token,
-      admin: {
-        id: admin._id,
-        email: admin.email,
-        firstname: admin.firstname,
-        lastname: admin.lastname,
-      },
-    });
-  } catch (err) {
-    console.error("Admin signup error:", err);
-    res.status(500).json({ message: "Server error. Please try again." });
-  }
-});
-
-
-
-
-router.post("/signin", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required." });
-    }
-
-    const admin = await Admin.findOne({ email: email.toLowerCase() });
-    if (!admin) {
-      return res.status(401).json({ message: "Invalid email or password." });
-    }
-
-    const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: "Invalid email or password." });
-    }
-
-    const token = jwt.sign({ id: admin._id }, JWT_ADMIN_SECRET, { expiresIn: "7d" });
-
-    res.json({
-      message: "Login successful!",
-      token,
-      admin: {
-        id: admin._id,
-        email: admin.email,
-        firstname: admin.firstname,
-        lastname: admin.lastname,
-      },
-    });
-  } catch (err) {
-    console.error("Admin signin error:", err);
-    res.status(500).json({ message: "Server error. Please try again." });
-  }
-});
-
-
-
-
-router.post("/course", adminAuth, async (req, res) => {
+router.post("/course", requireAuth, requireAdmin, async (req, res) => {
   try {
     const { title, description, price, imageURL } = req.body;
 
@@ -112,7 +23,7 @@ router.post("/course", adminAuth, async (req, res) => {
       description,
       price: Number(price),
       imageURL: imageURL || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
-      creatorId: req.adminId,
+      creatorId: req.userId,
     });
 
     res.status(201).json({ message: "Course created successfully!", course });
@@ -126,7 +37,7 @@ router.post("/course", adminAuth, async (req, res) => {
 
 
 
-router.put("/course", adminAuth, async (req, res) => {
+router.put("/course", requireAuth, requireAdmin, async (req, res) => {
   try {
     const { courseId, title, description, price, imageURL } = req.body;
 
@@ -134,7 +45,7 @@ router.put("/course", adminAuth, async (req, res) => {
       return res.status(400).json({ message: "Course ID is required." });
     }
 
-    const course = await Course.findOne({ _id: courseId, creatorId: req.adminId });
+    const course = await Course.findOne({ _id: courseId, creatorId: req.userId });
     if (!course) {
       return res.status(404).json({ message: "Course not found or access denied." });
     }
@@ -154,9 +65,9 @@ router.put("/course", adminAuth, async (req, res) => {
 });
 
 
-router.get("/course/bulk", adminAuth, async (req, res) => {
+router.get("/course/bulk", requireAuth, requireAdmin, async (req, res) => {
   try {
-    const courses = await Course.find({ creatorId: req.adminId }).sort({
+    const courses = await Course.find({ creatorId: req.userId }).sort({
       createdAt: -1,
     });
 

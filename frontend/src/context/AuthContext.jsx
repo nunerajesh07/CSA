@@ -1,25 +1,17 @@
-
-
-
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
 
-
-
-
 export function AuthProvider({ children }) {
-
   const [user, setUser] = useState(null);
-
-  const [admin, setAdmin] = useState(null);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
-    const savedAdmin = localStorage.getItem("adminUser");
+
+    // Clean up residual admin records if they exist to prevent state poisoning.
+    if (localStorage.getItem("adminUser")) localStorage.removeItem("adminUser");
+    if (localStorage.getItem("adminToken")) localStorage.removeItem("adminToken");
 
     if (savedUser) {
       try {
@@ -29,17 +21,8 @@ export function AuthProvider({ children }) {
       }
     }
 
-    if (savedAdmin) {
-      try {
-        setAdmin(JSON.parse(savedAdmin));
-      } catch {
-        localStorage.removeItem("adminUser");
-      }
-    }
-
-    setLoading(false); 
+    setLoading(false);
   }, []);
-
 
   const loginUser = (userData, token) => {
     setUser(userData);
@@ -53,36 +36,24 @@ export function AuthProvider({ children }) {
     localStorage.removeItem("userToken");
   };
 
-
-  const loginAdmin = (adminData, token) => {
-    setAdmin(adminData);
-    localStorage.setItem("adminUser", JSON.stringify(adminData));
-    localStorage.setItem("adminToken", token);
-  };
-
-  const logoutAdmin = () => {
-    setAdmin(null);
-    localStorage.removeItem("adminUser");
-    localStorage.removeItem("adminToken");
-  };
+  // Backwards compatiblility logic in case Navbar or elsewhere specifically tries to hit Admin.
+  // Both logout features simply strip the universal user payload now.
+  const logoutAdmin = () => logoutUser();
 
   const value = {
     user,
-    admin,
+    // Provide user payload generically as 'admin' reference if something was heavily depending on `{ admin } = useAuth()`
+    admin: user?.role === "admin" ? user : null,
     loading,
     loginUser,
     logoutUser,
-    loginAdmin,
     logoutAdmin,
-    isUserLoggedIn: !!user,
-    isAdminLoggedIn: !!admin,
+    isUserLoggedIn: !!user && user.role === "user",
+    isAdminLoggedIn: !!user && user.role === "admin",
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-
-
-
 
 export function useAuth() {
   const context = useContext(AuthContext);

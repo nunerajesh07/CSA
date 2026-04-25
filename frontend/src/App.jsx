@@ -13,10 +13,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PurchasedCourses from "./pages/PurchasedCourses";
 
-import AdminLogin from "./pages/AdminLogin";
-import AdminSignup from "./pages/AdminSignup";
 import AdminDashboard from "./pages/AdminDashboard";
 import AddEditCourse from "./pages/AddEditCourse";
+import AdminRoute from "./components/AdminRoute";
 
 export default function App() {
   return (
@@ -57,11 +56,13 @@ export default function App() {
           <Route path="/purchases" element={<PurchasedCourses />} />
 
           {}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/signup" element={<AdminSignup />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/course/new" element={<AddEditCourse />} />
-          <Route path="/admin/course/edit" element={<AddEditCourse />} />
+          
+          {/* Protected Admin Routes */}
+          <Route element={<AdminRoute />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/course/new" element={<AddEditCourse />} />
+            <Route path="/admin/course/edit" element={<AddEditCourse />} />
+          </Route>
 
           {}
           <Route path="*" element={<Navigate to="/" replace />} />

@@ -29,7 +29,12 @@ export default function Login() {
       const res = await userSignin(formData);
       loginUser(res.data.user, res.data.token);
       toast.success(`Welcome back, ${res.data.user.firstname}! 👋`);
-      navigate("/"); 
+      
+      if (res.data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/"); 
+      }
     } catch (err) {
       const message = err.response?.data?.message || "Login failed. Please try again.";
       toast.error(message);

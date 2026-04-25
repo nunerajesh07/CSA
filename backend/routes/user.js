@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Purchase = require("../models/Purchase");
 const Course = require("../models/Course");
-const userAuth = require("../middleware/userAuth");
+const { requireAuth, requireUser } = require("../middleware/auth");
 const { JWT_USER_SECRET } = require("../config");
 
 const router = express.Router();
@@ -38,7 +38,7 @@ router.post("/signup", async (req, res) => {
       lastname,
     });
 
-    const token = jwt.sign({ id: user._id }, JWT_USER_SECRET, { expiresIn: "7d" });
+    const token = jwt.sign({ id: user._id, role: user.role }, JWT_USER_SECRET, { expiresIn: "7d" });
 
     res.status(201).json({
       message: "Account created successfully!",
@@ -48,6 +48,7 @@ router.post("/signup", async (req, res) => {
         email: user.email,
         firstname: user.firstname,
         lastname: user.lastname,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -77,7 +78,7 @@ router.post("/signin", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    const token = jwt.sign({ id: user._id }, JWT_USER_SECRET, { expiresIn: "7d" });
+    const token = jwt.sign({ id: user._id, role: user.role }, JWT_USER_SECRET, { expiresIn: "7d" });
 
     res.json({
       message: "Login successful!",
@@ -87,6 +88,7 @@ router.post("/signin", async (req, res) => {
         email: user.email,
         firstname: user.firstname,
         lastname: user.lastname,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -99,7 +101,7 @@ router.post("/signin", async (req, res) => {
 
 
 
-router.get("/purchases", userAuth, async (req, res) => {
+router.get("/purchases", requireAuth, requireUser, async (req, res) => {
   try {
 
     const purchases = await Purchase.find({ userId: req.userId }).populate(
